@@ -115,7 +115,6 @@ with t1:
         p, d = calculate_pbv(df)
         st.session_state.p_cpi, st.session_state.delta = p, d
         with st.spinner("Analyzing..."):
-            # SHORTER PROMPT
             prompt = f"Executive summary for {objective} in 3 bullet points. Focus on top variance driver. Under 80 words:\n{df.to_string()}"
             brief = get_ai_analysis(prompt, api_key)
             st.markdown(f'<div class="ai-briefing"><b>🤖 Executive Brief:</b><br>{brief}</div>', unsafe_allow_html=True)
@@ -133,7 +132,6 @@ with t2:
     if st.button("Run Sieve"):
         with st.spinner("Sieving..."):
             res = run_gwts_sieve(["RELIANCE.NS", "TCS.NS", "INFY.NS", "ITC.NS", "HDFCBANK.NS"], objective)
-            # SHORTER PROMPT
             prompt = f"Justify these 3 assets for {objective} in 3 short points. Max 80 words:\n{res.to_string()}"
             brief = get_ai_analysis(prompt, api_key)
             st.markdown(f'<div class="ai-briefing"><b>🤖 Market Synthesis:</b><br>{brief}</div>', unsafe_allow_html=True)
@@ -144,7 +142,6 @@ with t3:
     if 'df' in st.session_state:
         p, d = st.session_state.p_cpi, st.session_state.delta
         with st.spinner("Strategy..."):
-            # SHORTER PROMPT
             prompt = f"Personal CPI is {p}%. List 3 ECE sector hedges (VLSI/Embedded) for {objective}. 3 bullets only, under 80 words."
             brief = get_ai_analysis(prompt, api_key)
             st.markdown(f'<div class="ai-briefing"><b>🤖 Strategy Recommendation:</b><br>{brief}</div>', unsafe_allow_html=True)
